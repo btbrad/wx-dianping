@@ -1,11 +1,12 @@
 <template>
   <div @click="clickHandle">
+    <app-header></app-header>
     首页
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
+import AppHeader from '@/layout/header.vue'
 
 export default {
   data () {
@@ -19,7 +20,7 @@ export default {
   },
 
   components: {
-    card
+    AppHeader
   },
 
   methods: {
