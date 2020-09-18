@@ -41,5 +41,10 @@
       "activeIcon": "static/tabs/orders-active.png"
     }],
     "position": "bottom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于确定你所在的城市"
+    }
   }
 }

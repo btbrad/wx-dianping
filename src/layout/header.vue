@@ -2,7 +2,7 @@
   <div class="header">
     <p class="app-title">点评网</p>
     <div class="app-header-menu">
-      <div class="location">上海市</div>
+      <div class="location">{{ city }}</div>
       <div class="personal-center">
         <img src="../../static/images/icon-person.png" alt="person">
       </div>
@@ -11,10 +11,51 @@
 </template>
 
 <script>
+const QQMapWX = require('../../libs/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.js')
+
 export default {
   data () {
     return {
+      city: '北京市'
+    }
+  },
+  mounted () {
+    this.getLocation()
+  },
+  methods: {
+    /**
+     * 获取当前地理位置
+     */
+    getLocation () {
+      const _this = this
+      wx.getLocation({
+        type: 'wgs84',
+        success (res) {
+          console.log(res)
+          const latitude = res.latitude
+          const longitude = res.longitude
+          // const speed = res.speed
+          // const accuracy = res.accuracy
 
+          // 实例化API核心类
+          const qqmapsdk = new QQMapWX({
+            key: 'O3RBZ-EJZWU-M2RVQ-BF2FK-SWOPF-5VF5S'
+          })
+          qqmapsdk.reverseGeocoder({
+            location: {
+              latitude,
+              longitude
+            },
+            success: (res) => {
+              console.log('位置信息', res)
+              if (res.status === 0) {
+                const { city } = res.result.address_component
+                _this.city = city
+              }
+            }
+          })
+        }
+      })
     }
   }
 }
@@ -35,6 +76,7 @@ export default {
       color: #fff;
       font-size: 20px;
       margin-top: 7px;
+      font-weight: 700;
     }
     .app-header-menu {
       width: 100%;

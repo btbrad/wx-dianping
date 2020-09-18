@@ -35,11 +35,26 @@ export default {
     clickHandle (ev) {
       console.log('clickHandle:', ev)
       // throw {message: 'custom test'}
+    },
+    /**
+     * 获取用户当前设置
+     */
+    getSettings () {
+      wx.getSetting({
+        success (res) {
+          console.log(111, res.authSetting)
+          // res.authSetting = {
+          //   "scope.userInfo": true,
+          //   "scope.userLocation": true
+          // }
+        }
+      })
     }
   },
 
   created () {
     // let app = getApp()
+    // this.getSettings()
   }
 }
 </script>
