@@ -30,7 +30,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import './style/style.scss';
 .container {
   height: 100%;
   display: flex;
@@ -40,6 +41,7 @@ export default {
   padding: 200rpx 0;
   box-sizing: border-box;
 }
+
 /* this rule will be remove */
 * {
   transition: width 2s;

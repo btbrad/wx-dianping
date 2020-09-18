@@ -7,7 +7,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "点评网",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   },
