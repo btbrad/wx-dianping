@@ -24,11 +24,19 @@
         <div>西安</div>
       </div>
     </div>
+
+    <div class="city-list">
+      <div class="city-sublist" v-for="(item, index) in cityData" :key="index">
+        <p class="city-letter">{{ item.letter }}</p>
+        <p class="city-row" v-for="(it, idx) in item.citys" :key="idx">{{ it }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import localtion from '@/mixins/location.js'
+const cityData = require('@/utils/cityData.js')
 
 export default {
   mixins: [localtion],
@@ -38,7 +46,8 @@ export default {
       indicators: [
         '热门', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
         'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-      ]
+      ],
+      cityData
     }
   },
   async onLoad (option) {
@@ -55,12 +64,14 @@ export default {
 .address-container {
   width: 100%;
   height: auto;
+  box-sizing: border-box;
   .current-city {
     width: 100%;
     height: 50px;
     line-height: 50px;
     font-size: 14px;
     padding-left: 10px;
+    box-sizing: border-box;
   }
   .hot-city {
     width: 100%;
@@ -68,9 +79,11 @@ export default {
     background: #ccc;
     color: #333;
     padding: 10px 0;
+    box-sizing: border-box;
     .title {
       font-size: 16px;
       padding: 10px;
+      box-sizing: border-box;
     }
     .hot-city-list {
       display: flex;
@@ -102,6 +115,29 @@ export default {
       font-size: 12px;
       text-align: center;
       color: #333;
+    }
+  }
+  .city-list{
+    width: 100%;
+    height: auto;
+    .city-letter {
+      width: 100%;
+      height: 80px;
+      line-height: 80px;
+      background: #ccc;
+      padding-left: 20px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .city-row{
+      width: 100%;
+      height: 50px;
+      background: #fff;
+      font-size: 14px;
+      border-bottom: 1px solid #ccc;
+      line-height: 50px;
+      padding-left: 20px;
+      box-sizing: border-box;
     }
   }
 }
