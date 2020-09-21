@@ -4,6 +4,9 @@
       <span v-if="currentCity">{{ currentCity }}</span>
       <span v-else @click="getLocation">点击定位</span>
     </p>
+    <div class="right-indicator">
+      <div class="item" v-for="(item,index) in indicators" :key="index">{{ item }}</div>
+    </div>
     <div class="hot-city">
       <div class="title">热门城市</div>
       <div class="hot-city-list">
@@ -31,7 +34,11 @@ export default {
   mixins: [localtion],
   data () {
     return {
-      currentCity: ''
+      currentCity: '',
+      indicators: [
+        '热门', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+        'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+      ]
     }
   },
   async onLoad (option) {
@@ -79,6 +86,22 @@ export default {
         justify-content: center;
         align-items: center;
       }
+    }
+  }
+  .right-indicator {
+    position: fixed;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    width: 50px;
+    flex-wrap: wrap;
+    .item {
+      width: 100%;
+      height: 15px;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
     }
   }
 }
