@@ -5,7 +5,21 @@
       <span v-else @click="getLocation">点击定位</span>
     </p>
     <div class="hot-city">
-
+      <div class="title">热门城市</div>
+      <div class="hot-city-list">
+        <div>上海</div>
+        <div>北京</div>
+        <div>广东</div>
+        <div>深圳</div>
+        <div>天津</div>
+        <div>杭州</div>
+        <div>南京</div>
+        <div>苏州</div>
+        <div>成都</div>
+        <div>武汉</div>
+        <div>重庆</div>
+        <div>西安</div>
+      </div>
     </div>
   </div>
 </template>
@@ -43,8 +57,29 @@ export default {
   }
   .hot-city {
     width: 100%;
-    height: 300px;
+    height: auto;
     background: #ccc;
+    color: #333;
+    padding: 10px 0;
+    .title {
+      font-size: 16px;
+      padding: 10px;
+    }
+    .hot-city-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      div {
+        width: 80px;
+        height: 30px;
+        background: #fff;
+        font-size: 16px;
+        margin: 5px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }
 </style>
