@@ -2,14 +2,14 @@
   "pages": [
     "pages/index/main",
     "pages/logs/main",
-    "pages/counter/main"
+    "pages/counter/main",
+    "pages/address/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle": "white",
-    "navigationStyle": "custom"
+    "navigationBarTitleText": "点评网",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999",

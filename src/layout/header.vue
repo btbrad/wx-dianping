@@ -2,7 +2,7 @@
   <div class="header">
     <p class="app-title">点评网</p>
     <div class="app-header-menu">
-      <div class="location">{{ city }}</div>
+      <div class="location" @click="handleClick">{{ city }}</div>
       <div class="personal-center">
         <img src="../../static/images/icon-person.png" alt="person">
       </div>
@@ -16,7 +16,7 @@ const QQMapWX = require('../../libs/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.js')
 export default {
   data () {
     return {
-      city: '北京市'
+      city: '定位中...'
     }
   },
   mounted () {
@@ -55,6 +55,14 @@ export default {
             }
           })
         }
+      })
+    },
+    /**
+     * 跳转至城市选择页
+     */
+    handleClick () {
+      wx.navigateTo({
+        url: '/pages/address/main'
       })
     }
   }
