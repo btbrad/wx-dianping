@@ -55,8 +55,9 @@ export default {
       currentLetter: ''
     }
   },
-  async onLoad (option) {
-    let { city } = option
+  async onLoad () {
+    console.log('全局变量', this.globalData)
+    let { city } = this.globalData
     if (!city) {
       city = await this.getLocation()
     }

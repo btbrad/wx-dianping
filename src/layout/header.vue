@@ -20,8 +20,16 @@ export default {
       city: ''
     }
   },
+  async onLoad () {
+    let { city } = this.globalData
+    if (!city) {
+      const locateCity = await this.getLocation()
+      this.globalData.city = locateCity
+    } else {
+      this.city = city
+    }
+  },
   mounted () {
-    this.getLocation()
   },
   methods: {
     /**
