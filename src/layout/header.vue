@@ -20,8 +20,9 @@ export default {
       city: ''
     }
   },
-  async onLoad () {
+  async onShow () {
     let { city } = this.globalData
+    console.log('index', city)
     if (!city) {
       const locateCity = await this.getLocation()
       this.globalData.city = locateCity
@@ -29,7 +30,12 @@ export default {
       this.city = city
     }
   },
+  async onLoad () {
+    const locateCity = await this.getLocation()
+    this.globalData.city = locateCity
+  },
   mounted () {
+
   },
   methods: {
     /**

@@ -12,25 +12,14 @@
       <div id="hot_scroll" class="hot-city">
         <div class="title">热门城市</div>
         <div class="hot-city-list">
-          <div>上海</div>
-          <div>北京</div>
-          <div>广东</div>
-          <div>深圳</div>
-          <div>天津</div>
-          <div>杭州</div>
-          <div>南京</div>
-          <div>苏州</div>
-          <div>成都</div>
-          <div>武汉</div>
-          <div>重庆</div>
-          <div>西安</div>
+          <div v-for="(item, index) in hotList" :key="index" @click="selectCity(item)">{{ item }}</div>
         </div>
       </div>
 
       <div class="city-list">
           <div class="city-sublist" v-for="(item, index) in cityData" :key="index">
             <p class="city-letter" :id="item.letter+'_scroll'">{{ item.letter }}</p>
-            <p class="city-row" v-for="(it, idx) in item.citys" :key="idx">{{ it }}</p>
+            <p class="city-row" v-for="(it, idx) in item.citys" :key="idx" @click="selectCity(it)">{{ it }}</p>
           </div>
       </div>
     </scroll-view>
@@ -51,6 +40,20 @@ export default {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
         'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
       ],
+      hotList: [
+        '上海',
+        '北京',
+        '广东',
+        '深圳',
+        '天津',
+        '杭州',
+        '南京',
+        '苏州',
+        '成都',
+        '武汉',
+        '重庆',
+        '西安'
+      ],
       cityData,
       currentLetter: ''
     }
@@ -67,6 +70,11 @@ export default {
     handleScroll (id) {
       console.log(id)
       this.currentLetter = id
+    },
+    selectCity (city) {
+      this.currentCity = city
+      this.globalData.city = this.currentCity
+      wx.navigateBack()
     }
   }
 }
