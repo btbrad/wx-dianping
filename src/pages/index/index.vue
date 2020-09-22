@@ -1,12 +1,13 @@
 <template>
   <div @click="clickHandle">
     <app-header></app-header>
-    首页
+    <category></category>
   </div>
 </template>
 
 <script>
 import AppHeader from '@/layout/header.vue'
+import Category from './components/category.vue'
 
 export default {
   data () {
@@ -20,7 +21,7 @@ export default {
   },
 
   components: {
-    AppHeader
+    AppHeader, Category
   },
 
   methods: {
