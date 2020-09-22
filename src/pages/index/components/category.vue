@@ -46,7 +46,8 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  background: #fff;
   a.category-item {
     display: block;
     width: 50px;

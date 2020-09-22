@@ -2,12 +2,14 @@
   <div @click="clickHandle">
     <app-header></app-header>
     <category></category>
+    <recommend-list></recommend-list>
   </div>
 </template>
 
 <script>
 import AppHeader from '@/layout/header.vue'
 import Category from './components/category.vue'
+import RecommendList from './components/recommendList.vue'
 
 export default {
   data () {
@@ -21,7 +23,7 @@ export default {
   },
 
   components: {
-    AppHeader, Category
+    AppHeader, Category, RecommendList
   },
 
   methods: {
@@ -61,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+page{
+  background: #0ff;
+} 
 .userinfo {
   display: flex;
   flex-direction: column;
