@@ -115,7 +115,7 @@ export default {
           display: inline-block;
           border: 1px solid #666;
           margin-right: 5px;
-          padding: 2px 5px;
+          padding: 1px 5px;
         }
       }
     }

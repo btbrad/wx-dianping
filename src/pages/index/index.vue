@@ -58,6 +58,12 @@ export default {
   created () {
     // let app = getApp()
     // this.getSettings()
+    const db = wx.cloud.database({
+      env: 'cloud-test-2lm7t'
+    })
+    db.collection('dianping').get().then(res => {
+      console.log(res)
+    })
   }
 }
 </script>
