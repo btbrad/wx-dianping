@@ -2,7 +2,8 @@
   <div @click="clickHandle">
     <app-header></app-header>
     <category></category>
-    <recommend-list></recommend-list>
+    <recommend-list :list="storeList"></recommend-list>
+    <button>加载更多</button>
   </div>
 </template>
 
@@ -18,7 +19,8 @@ export default {
       userInfo: {
         nickName: 'mpvue',
         avatarUrl: 'http://mpvue.com/assets/logo.png'
-      }
+      },
+      storeList: []
     }
   },
 
@@ -67,7 +69,7 @@ export default {
     wx.cloud.callFunction({
       name: 'getStoreList'
     }).then(res => {
-      console.log(res)
+      this.storeList = res.result.data
     })
   }
 }

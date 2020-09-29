@@ -3,7 +3,28 @@
     <div class="title">
       猜你喜欢
     </div>
-    <div class="store-item">
+    <div class="store-item" v-for="(item, index) in list" :key="index">
+      <div class="image">
+        <img :src="item.imgURL" alt="store">
+      </div>
+      <div class="info">
+        <div class="name">{{ item.name }}</div>
+        <div class="rate">
+          <span class="stars"></span>
+          <span class="avage-price">{{ item.avgPrice }}/人</span>
+        </div>
+        <div class="location">
+          <span>{{ item.area }}</span>
+          <span>{{ item.category }}</span>
+        </div>
+        <div class="specialty">
+          <ul>
+            <li v-for="(element, idx) in item.speciality" :key="idx">{{ element }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="store-item">
       <div class="image">
         <img src="/static/images/store-img.png" alt="store">
       </div>
@@ -26,44 +47,25 @@
           </ul>
         </div>
       </div>
-    </div>
-    <div class="store-item">
-      <div class="image">
-        <img src="/static/images/store-img.png" alt="store">
-      </div>
-      <div class="info">
-        <div class="name">小南国(智汇店)</div>
-        <div class="rate">
-          <span class="stars"></span>
-          <span class="avage-price">¥81/人</span>
-        </div>
-        <div class="location">
-          <span>草桥</span>
-          <span>北京菜</span>
-        </div>
-        <div class="specialty">
-          <ul>
-            <li>古色古香</li>
-            <li>菜色精致</li>
-            <li>干净卫生</li>
-            <li>服务贴心</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .recommend-list-container {
   width: 100%;
-  height: 500px;
+  height: auto;
   .title {
     color: #666;
     font-size: 16px;
