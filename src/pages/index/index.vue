@@ -3,7 +3,7 @@
     <app-header></app-header>
     <category></category>
     <recommend-list :list="storeList"></recommend-list>
-    <button>加载更多</button>
+    <button v-if="total !== storeList.length" @click="loadMore" class="more">加载更多</button>
   </div>
 </template>
 
@@ -20,7 +20,10 @@ export default {
         nickName: 'mpvue',
         avatarUrl: 'http://mpvue.com/assets/logo.png'
       },
-      storeList: []
+      storeList: [],
+      page: 1,
+      size: 2,
+      total: 0
     }
   },
 
@@ -54,6 +57,32 @@ export default {
           // }
         }
       })
+    },
+    getStoreList () {
+      wx.cloud.callFunction({
+        name: 'getStoreList',
+        data: {
+          page: this.page,
+          size: this.size
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.result.code === 1) {
+          wx.showToast({
+            title: res.result.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        if (res.result.code === 0) {
+          this.total = res.result.total
+          this.storeList = [...this.storeList, ...res.result.list]
+        }
+      })
+    },
+    loadMore () {
+      this.page++
+      this.getStoreList()
     }
   },
 
@@ -66,16 +95,14 @@ export default {
     // db.collection('dianping').get().then(res => {
     //   console.log(res)
     // })
-    wx.cloud.callFunction({
-      name: 'getStoreList'
-    }).then(res => {
-      this.storeList = res.result.data
-    })
+    this.getStoreList()
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../../style/style.scss';
+
 page{
   background: #0ff;
 } 
@@ -128,5 +155,12 @@ page{
   width:4.5rem;
   height:1rem;
   background-color:green;
+}
+.more {
+  width: 80%;
+  height: 40px;
+  background: $dianping-yellow;
+  line-height: 40px;
+  margin-top: 30px;
 }
 </style>
