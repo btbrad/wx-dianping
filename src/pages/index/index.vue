@@ -58,10 +58,15 @@ export default {
   created () {
     // let app = getApp()
     // this.getSettings()
-    const db = wx.cloud.database({
-      env: 'cloud-test-2lm7t'
-    })
-    db.collection('dianping').get().then(res => {
+    // const db = wx.cloud.database({
+    //   env: 'cloud-test-2lm7t'
+    // })
+    // db.collection('dianping').get().then(res => {
+    //   console.log(res)
+    // })
+    wx.cloud.callFunction({
+      name: 'getStoreList'
+    }).then(res => {
       console.log(res)
     })
   }
