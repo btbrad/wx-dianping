@@ -8,12 +8,8 @@
         <ul>
           <li class="store_title">{{detailData.name}}</li>
           <li class="store_price">
-            <img src="/static/images/b-star.png" />
-            <img src="/static/images/b-star.png" />
-            <img src="/static/images/b-star.png" />
-            <img src="/static/images/b-star.png" />
-            <img src="/static/images/b-star.png" />
-            {{detailData.view}}条 ￥{{detailData.avgPrice}}/人
+            <Stars :rate="detailData.rate"/>
+            {{detailData.rate}} ￥{{detailData.avgPrice}}/人
           </li>
           <li class="store_taste">口味：7.8 环境：8.3 服务：8.1</li>
           <li class="store_type">{{ area }} {{ category }}</li>
@@ -88,13 +84,17 @@
 </template>
 
 <script>
+import Stars from './components/stars.vue'
+
 export default {
+  components: {
+    Stars
+  },
   data () {
     return {
       detailData: {}
     }
   },
-  components: {},
   onLoad (options) {
     // 通过id查找详细内容
     let id = +options.id
