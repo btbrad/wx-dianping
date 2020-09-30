@@ -3,20 +3,20 @@
     <div class="container_up">
       <div class="detail_content">
         <div class="imgContainer">
-          <img v-if="detailData.image_path" :src="'cloud://dianping-830xs.6469-dianping-830xs-1300966336/'+detailData.image_path" />
+          <img v-if="detailData.imgURL" :src="detailData.imgURL" />
         </div>
         <ul>
-          <li class="store_title">{{detailData.title}}</li>
+          <li class="store_title">{{detailData.name}}</li>
           <li class="store_price">
             <img src="/static/images/b-star.png" />
             <img src="/static/images/b-star.png" />
             <img src="/static/images/b-star.png" />
             <img src="/static/images/b-star.png" />
             <img src="/static/images/b-star.png" />
-            {{detailData.view}}条 ￥{{detailData.price}}/人
+            {{detailData.view}}条 ￥{{detailData.avgPrice}}/人
           </li>
           <li class="store_taste">口味：7.8 环境：8.3 服务：8.1</li>
-          <li class="store_type">上地 快餐简餐</li>
+          <li class="store_type">{{ area }} {{ category }}</li>
         </ul>
       </div>
       <div class="local">
@@ -105,7 +105,16 @@ export default {
         id
       }
     }).then(res => {
-      console.log(res)
+      if (res.result.code === 1) {
+        wx.showToast({
+          title: res.result.msg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      if (res.result.code === 0) {
+        this.detailData = res.result.data[0]
+      }
     })
   }
 }
@@ -171,10 +180,12 @@ export default {
 .content-show {
   font-weight: 150;
   border-bottom: 1px solid #e1e1e1;
+  font-size: 16px;
 }
 .content-show img {
   width: 28rpx;
   height: 28rpx;
+  display: inline-block;
 }
 .content-show img:nth-child(2) {
   margin-left: 42rpx;
@@ -191,24 +202,30 @@ export default {
   line-height: 103rpx;
 }
 .position {
-  height: 186rpx;
+  width: 100%;
+  height: 36px;
   display: flex;
+  align-items: center;
   flex-direction: row;
-  margin-top: 35rpx;
+  margin: 8px 0;
+  line-height: 36px;
 }
 .position img {
-  width: 21rpx;
-  height: 28rpx;
-  margin-top: 8rpx;
-  margin-right: 21rpx;
+  width: 20px;
+  height: 14px;
+  margin-right: 21px;
+  display: block;
 }
 .text-content {
-  width: 500rpx;
+  width: 500px;
+  height: 100%;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
 }
 .text-content p {
   font-size: 30rpx;
   color: #777777;
-  margin-top: 15rpx;
 }
 .text-content span {
   font-size: 30rpx;
@@ -216,18 +233,17 @@ export default {
   font-weight: 200;
 }
 .phone-container {
-  width: 96rpx;
+  width: 186px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60rpx;
-  margin-top: 30rpx;
-  margin-left: 48rpx;
+  height: 100%;
   border-left: 1px solid #e1e1e1;
 }
 .phone-container img {
   width: 32rpx;
   height: 35rpx;
+  display: block;
 }
 /* 灰色分割线 */
 .rule {
@@ -243,6 +259,7 @@ export default {
   justify-content: flex-start;
   align-items: center;
   color: #4d4d4d;
+  font-size: 16px;
 }
 .rank-img {
   width: 40rpx;
@@ -332,6 +349,10 @@ export default {
   background: #fcfcfb;
   align-items: center;
   color: #707070;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .footer div{
   flex:1;
