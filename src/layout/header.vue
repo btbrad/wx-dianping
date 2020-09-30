@@ -3,7 +3,7 @@
     <p class="app-title">点评网</p>
     <div class="app-header-menu">
       <div class="location" @click="handleClick">{{ city || '定位中...' }}</div>
-      <div class="personal-center">
+      <div class="personal-center" @click="toPersonal">
         <img src="../../static/images/icon-person.png" alt="person">
       </div>
     </div>
@@ -45,6 +45,14 @@ export default {
       let { city } = this
       wx.navigateTo({
         url: `/pages/address/main?city=${city}`
+      })
+    },
+    /**
+     * 跳转指个人中心
+     */
+    toPersonal () {
+      wx.navigateTo({
+        url: `/pages/personal/main`
       })
     }
   }
