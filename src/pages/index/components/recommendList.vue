@@ -3,7 +3,7 @@
     <div class="title">
       猜你喜欢
     </div>
-    <div class="store-item" v-for="(item, index) in list" :key="index" @click="showDetail(item._id)">
+    <div class="store-item" v-for="(item, index) in list" :key="index" @click="showDetail(item.id)">
       <div class="image">
         <img :src="item.imgURL" alt="store">
       </div>

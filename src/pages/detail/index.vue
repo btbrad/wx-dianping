@@ -88,7 +88,6 @@
 </template>
 
 <script>
-const db = wx.cloud.database()
 export default {
   data () {
     return {
@@ -98,10 +97,15 @@ export default {
   components: {},
   onLoad (options) {
     // 通过id查找详细内容
-    let id = options.id
-    db.collection('remark').doc(id).get().then(res => {
+    let id = +options.id
+    console.log('id', +id)
+    wx.cloud.callFunction({
+      name: 'getDetailById',
+      data: {
+        id
+      }
+    }).then(res => {
       console.log(res)
-      this.detailData = res.data
     })
   }
 }
