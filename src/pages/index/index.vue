@@ -30,7 +30,10 @@ export default {
   components: {
     AppHeader, Category, RecommendList
   },
-
+  onReachBottom () {
+    this.page++
+    this.getStoreList()
+  },
   methods: {
     bindViewTap () {
       const url = '../logs/main'

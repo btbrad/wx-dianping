@@ -3,7 +3,7 @@
     <div class="title">
       猜你喜欢
     </div>
-    <div class="store-item" v-for="(item, index) in list" :key="index">
+    <div class="store-item" v-for="(item, index) in list" :key="index" @click="showDetail(item._id)">
       <div class="image">
         <img :src="item.imgURL" alt="store">
       </div>
@@ -58,6 +58,13 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  methods: {
+    showDetail (id) {
+      wx.navigateTo({
+        url: `/pages/detail/main?id=${id}`
+      })
+    }
   }
 }
 </script>
@@ -80,6 +87,7 @@ export default {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ddd;
+    background: #fff;
     .image {
       width: 80px;
       height: 80px;
