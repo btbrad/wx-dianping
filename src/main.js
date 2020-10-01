@@ -8,6 +8,7 @@ const app = new Vue(App)
 app.$mount()
 Vue.prototype.globalData = getApp().globalData
 
+// 云开发初始化
 wx.cloud.init({
   traceUser: true
 })

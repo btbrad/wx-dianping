@@ -25,7 +25,7 @@ export default {
   methods: {
     login () {
       // 获取用户数据
-      // 收藏；获取openid -->缓存？收藏；
+      // 收藏：获取openid -->缓存？收藏；
       wx.getUserInfo({
         success: res => {
           console.log(res)

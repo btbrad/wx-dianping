@@ -20,12 +20,15 @@ export default {
     starArr () {
       let arr = []
       let integer = parseInt(this.rate)
+      // 处理全星
       for (let index = 0; index < integer; index++) {
         arr.push('on')
       }
+      // 处理半星
       if (this.rate - integer > 0) {
         arr.push('half')
       }
+      // 处理暗星
       for (let i = 0; i < (5 - arr.length > 0 ? 5 - arr.length : 0); i++) {
         arr.push('off')
       }
