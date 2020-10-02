@@ -9,6 +9,7 @@
       <span class="collection-text">收藏列表</span>
       <span class="right-arrows"></span>
     </div>
+    <button type="primary" open-type="contact">客服</button>
     <div class="downPage"></div>
   </div>
 </template>
